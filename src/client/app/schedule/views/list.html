@@ -1,0 +1,53 @@
+<section class="mainbar">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Schedule List
+        </div>
+        <div class="panel-body">
+
+            <div class="pull-right">
+                <a type="button" class="btn btn-success" href="/schedule/create">
+                    <i class="glyphicon glyphicon-open"></i> New Schedule
+                </a>
+                <a type="button" class="btn btn-info" ng-click="vm.tableParams.reload()">
+                    <i class="glyphicon glyphicon-refresh"></i> Refresh
+                </a>
+            </div>
+
+            <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed">
+                <tr ng-repeat="schedule in $data" ng-class="{'bg-success': schedule.status == 'scheduled' }">
+                    <td data-title="'Start'" sortable="'dateStart'" filter="{ 'dateStart': 'text' }">
+                        {{schedule.dateStart| date:'yyyy-MM-dd HH:mm:ss'}}
+                    </td>
+                    <td data-title="'End'" sortable="'dateEnd'" filter="{ 'dateEnd': 'text' }">
+                        {{schedule.dateEnd| date:'yyyy-MM-dd HH:mm:ss'}}
+                    </td>
+
+                    <td data-title="'Entry'">{{schedule.entry.id}} : {{schedule.entry.title}}</td>
+                    <td data-title="'Status'" sortable="'status'" filter="{ 'status': 'text' }">
+                        {{schedule.status}}
+                    </td>
+                    <td>
+                        <div class="table-actions">
+                            <a ng-if="schedule.status != 'scheduled'" class="btn btn-success" title="Schedule"  ng-click="vm.schedul(schedule)" item="schedule">
+                                <span class="glyphicon glyphicon-play"></span>
+                            </a>
+                            <a ng-if="schedule.status == 'scheduled'"class="btn btn-danger" title="Clear"  ng-click="vm.clear(schedule)" item="schedule">
+                                <span class="glyphicon glyphicon-stop"></span>
+                            </a>
+                            <a class="btn btn-default" title="View" href="/schedule/{{schedule.id}}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                            <a class="btn btn-default" title="Edit" href="/schedule/{{schedule.id}}/edit">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</section>

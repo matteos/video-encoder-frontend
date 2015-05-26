@@ -1,0 +1,40 @@
+<section class="mainbar" data-ng-init="vm.toViewEntry()">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Entry View
+        </div>
+        <div class="panel-body">
+
+            <form novalidate>
+                <formly-form model="vm.entry" fields="vm.formFields">
+                </formly-form>
+            </form>
+
+            <table ng-table="" show-filter="false" class="table table-condensed table-striped">
+                <tr ng-repeat="flavor in vm.entry.flavors">
+                    <td data-title="'Id'"  >{{flavor.id}}</td>
+                    <td data-title="'Type'" >{{flavor.type}}</td>
+                    <td data-title="'Stream'" >{{flavor.stream.id}} : {{flavor.stream.name}}</td>
+                </tr>
+            </table>
+
+
+
+            <hr/>
+            <div>
+                <a class="btn btn-success" href="/entry/{{vm.entry.id}}/edit">
+                    <i class="glyphicon glyphicon-edit"></i> Edit
+                </a>
+                <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.entry">
+                    <i class="glyphicon glyphicon-remove-circle"></i> Delete
+                </a>
+                <a class="btn btn-primary" href="/entry">
+                    <i class="glyphicon glyphicon-list"></i> List Entries
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</section>

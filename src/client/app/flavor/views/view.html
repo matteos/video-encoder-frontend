@@ -1,0 +1,30 @@
+<section class="mainbar" data-ng-init="vm.toViewFlavor()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Flavor View
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.flavor" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/flavor/{{vm.flavor.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Edit
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.flavor">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/flavor">
+          <i class="glyphicon glyphicon-list"></i> List Flavors
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

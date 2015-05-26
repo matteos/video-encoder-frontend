@@ -1,0 +1,46 @@
+<section class="mainbar">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Entry List
+        </div>
+        <div class="panel-body">
+
+            <div class="pull-right">
+                <a type="button" class="btn btn-success" href="/entry/create">
+                    <i class="glyphicon glyphicon-open"></i> New Entry
+                </a>
+                <a type="button" class="btn btn-info" ng-click="vm.tableParams.reload()">
+                    <i class="glyphicon glyphicon-refresh"></i> Refresh
+                </a>
+            </div>
+
+            <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed">
+                <tr ng-repeat="entry in $data" ng-class="{'bg-success': entry.status == 'processing' }">
+                    <td data-title="'Id'" sortable="'id'" filter="{ 'id': 'text' }">{{entry.id}}</td>   
+                    <td data-title="'Title'" sortable="'title'" filter="{ 'title': 'text' }">{{entry.title}}</td>              
+                    <td data-title="'Stream'">{{entry.stream.name}}</td> 
+                    <td data-title="'Status'" sortable="'status'" filter="{ 'status': 'text' }">
+                        {{entry.status}}
+                    </td>
+
+                    <td>
+                        <div class="table-actions">
+                            <a ng-if="entry.status != 'processing'" class="btn btn-success" title="Process"  ng-click="vm.process(entry)" item="entry">
+                                <span class="glyphicon glyphicon-play"></span>
+                            </a>
+                            <a ng-if="entry.status == 'processing'"class="btn btn-danger" title="Stop"  ng-really-message="Are you sure ?" ng-really-click="vm.stop(entry)" item="entry">
+                                <span class="glyphicon glyphicon-stop"></span>
+                            </a>
+                            <a class="btn btn-default" title="View" href="/entry/{{entry.id}}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>                           
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</section>
