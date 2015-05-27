@@ -35,7 +35,7 @@
             // Redirect after save
             stream.$save(function(response) {
                 logger.success('Stream created');
-                $location.path('stream/' + response.id);
+                $location.path('stream');
             }, function(errorResponse) {
                 vm.error = errorResponse.data.summary;
             });

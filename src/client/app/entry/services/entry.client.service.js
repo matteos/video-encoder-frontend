@@ -19,7 +19,7 @@
             },
             list: {
                 method: 'GET',
-                url: API_BASE_URL + '/entry'
+                url: API_BASE_URL + '/entry?limit=50'
             },
             detail: {
                 method: 'GET',

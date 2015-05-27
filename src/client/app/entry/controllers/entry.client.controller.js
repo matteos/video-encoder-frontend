@@ -42,7 +42,7 @@
             // Redirect after save
             entry.$save(function(response) {
                 logger.success('Entry created');
-                $location.path('entry/' + response.id);
+                $location.path('entry');
             }, function(errorResponse) {
                 vm.error = errorResponse.data.summary;
             });
@@ -107,6 +107,7 @@
 
         vm.toViewEntry = function() {
             vm.entry = Entry.detail({id: $stateParams.entryId}, function(entry, res) {
+                //override associations with id
                 if (entry.hasOwnProperty('stream')) {
                     var s = entry.stream;
                     vm.entry.stream = s.id;

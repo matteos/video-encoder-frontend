@@ -1,38 +1,43 @@
 <section class="mainbar">
 
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      Flavor List
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Flavor List
+        </div>
+        <div class="panel-body">
+
+            <div class="pull-right">
+                <a type="button" class="btn btn-success" href="/flavor/create">
+                    <i class="glyphicon glyphicon-open"></i> New Flavor
+                </a>
+            </div>
+
+            <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed">
+                <tr ng-repeat="flavor in $data"  ng-class="{'bg-success': flavor.status == 'processing' }">
+                    <td data-title="'Id'" sortable="'id'" filter="{ 'id': 'text' }">{{flavor.id}}</td>
+                    <td data-title="'Type'" sortable="'type'" filter="{ 'type': 'text' }">{{flavor.type}}</td>
+                    <td data-title="'Entry'">{{flavor.entry.title}}</td>
+                    <td data-title="'Stream'">{{flavor.stream.name}}</td>
+                    <td data-title="'Preset'">{{flavor.preset.name}}</td>
+                    <td data-title="'Status'" sortable="'status'" filter="{ 'status': 'text' }">{{flavor.status}}</td>
+
+                    <td>
+                        <div class="table-actions">
+                            <a class="btn btn-default" title="View" href="/flavor/{{flavor.id}}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                            <a class="btn btn-default" title="Edit" href="/flavor/{{flavor.id}}/edit">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(flavor)" item="flavor">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
     </div>
-    <div class="panel-body">
-
-      <div class="pull-right">
-        <a type="button" class="btn btn-success" href="/flavor/create">
-          <i class="glyphicon glyphicon-open"></i> New Flavor
-        </a>
-      </div>
-
-      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
-          <tr ng-repeat="flavor in $data">
-              <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{flavor.name}}</td>
-              <td data-title="'Address'" sortable="'address'" filter="{'address': 'text'}">{{flavor.address}}</td>
-              <td>
-                 <div class="table-actions">
-                      <a class="btn btn-default" title="View" href="/flavor/{{flavor.id}}">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                      </a>
-                      <a class="btn btn-default" title="Edit" href="/flavor/{{flavor.id}}/edit">
-                        <span class="glyphicon glyphicon-edit"></span>
-                      </a>
-                      <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(flavor)" item="flavor">
-                        <span class="glyphicon glyphicon-remove-circle"></span>
-                      </a>
-                  </div>
-              </td>
-          </tr>
-      </table>
-
-    </div>
-  </div>
 
 </section>

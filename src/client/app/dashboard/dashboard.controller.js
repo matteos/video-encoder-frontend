@@ -1,9 +1,9 @@
-(function () {
+(function() {
     'use strict';
 
     angular
-        .module('app.dashboard')
-        .controller('DashboardController', DashboardController);
+            .module('app.dashboard')
+            .controller('DashboardController', DashboardController);
 
     DashboardController.$inject = ['$q', 'dataservice', 'logger'];
     /* @ngInject */
@@ -12,10 +12,17 @@
         vm.news = {
             title: 'video-encoder-frontend',
             description: 'generator-angular-crud allows creating entities ' +
-                          'and CRUD operations very productively for AngularJS applications'
+                    'and CRUD operations very productively for AngularJS applications'
         };
-        vm.messageCount = 0;
-        vm.people = [];
+        vm.entriesCount = 0;
+        vm.flavorsCount = 0;
+        vm.schedulesCount = 0;
+
+        vm.systemInfo = {};
+        vm.systemNetwork = {};
+        vm.systemLoad = {};
+
+
         vm.title = 'Dashboard';
 
         activate();
@@ -27,18 +34,26 @@
             });
         }
 
-        function getMessageCount() {
-            return dataservice.getMessageCount().then(function (data) {
-                vm.messageCount = data;
-                return vm.messageCount;
-            });
-        }
-
-        function getPeople() {
-            return dataservice.getPeople().then(function (data) {
+        function getSystemInfo() {
+            return dataservice.getPeople().then(function(data) {
                 vm.people = data;
                 return vm.people;
             });
         }
+
+
+//        function getMessageCount() {
+//            return dataservice.getMessageCount().then(function (data) {
+//                vm.messageCount = data;
+//                return vm.messageCount;
+//            });
+//        }
+//
+//        function getPeople() {
+//            return dataservice.getPeople().then(function (data) {
+//                vm.people = data;
+//                return vm.people;
+//            });
+//        }
     }
 })();

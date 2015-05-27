@@ -23,7 +23,9 @@
 
         vm.tableParams = TableSettings.getParams(Schedule);
         vm.schedule = {
-            entry: {}
+            entry: 0,
+            dateStart: new Date(),
+            dateEnd: new Date()
         };
 
         vm.setFormFields = function(disabled) {
@@ -37,7 +39,7 @@
             // Redirect after save
             schedule.$save(function(response) {
                 logger.success('Schedule created');
-                $location.path('schedule/' + response.id);
+                $location.path('schedule');
             }, function(errorResponse) {
                 vm.error = errorResponse.data.summary;
             });
@@ -109,12 +111,12 @@
                 if (schedule.hasOwnProperty('entry')) {
                     var e = schedule.entry;
                     vm.schedule.entry = e.id;
-                    var ds = schedule.dateStart;
-                    vm.schedule.dateStart = new Date(ds);
-                    var de = schedule.dateEnd;
-                    vm.schedule.dateEnd = new Date(de);
-
                 }
+                var ds = schedule.dateStart;
+                vm.schedule.dateStart = new Date(ds);
+                var de = schedule.dateEnd;
+                vm.schedule.dateEnd = new Date(de);
+                console.dir(vm.schedule);
                 vm.setFormFields(false);
             });
 
@@ -127,6 +129,8 @@
 
         function activate() {
             //logger.info('Activated Schedule View');
+            console.log("activate schedule controller");
+            console.dir(vm.schedule);
         }
     }
 

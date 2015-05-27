@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('app.flavor')
-        .factory('Flavor', Flavor);
+            .module('app.flavor')
+            .factory('Flavor', Flavor);
 
     Flavor.$inject = ['$resource', 'API_BASE_URL'];
     /* @ngInject */
@@ -16,6 +16,10 @@
         var actions = {
             update: {
                 method: 'PUT'
+            },
+            list: {
+                method: 'GET',
+                url: API_BASE_URL + '/flavor?limit=50'
             }
         };
 

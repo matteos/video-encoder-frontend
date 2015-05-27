@@ -23,7 +23,7 @@
                     title: 'List Streams',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-cog"></i> Streams'
+                        content: '<i class="fa fa-eye"></i> Streams'
                     }
                 }
             },

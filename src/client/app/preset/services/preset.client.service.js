@@ -2,15 +2,15 @@
     'use strict';
 
     angular
-            .module('app.stream')
-            .factory('Stream', Stream);
+            .module('app.preset')
+            .factory('Preset', Preset);
 
-    Stream.$inject = ['$resource', 'API_BASE_URL'];
+    Preset.$inject = ['$resource', 'API_BASE_URL'];
     /* @ngInject */
-    function Stream($resource, API_BASE_URL) {
+    function Preset($resource, API_BASE_URL) {
 
         var params = {
-            streamId: '@id'
+            presetId: '@id'
         };
 
         var actions = {
@@ -19,11 +19,11 @@
             },
             list: {
                 method: 'GET',
-                url: API_BASE_URL + '/stream?limit=50'
+                url: API_BASE_URL + '/preset?limit=50'
             }
         };
 
-        var API_URL = API_BASE_URL + '/stream/:streamId';
+        var API_URL = API_BASE_URL + '/preset/:presetId';
 
         return $resource(API_URL, params, actions);
 

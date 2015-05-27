@@ -1,0 +1,45 @@
+<section class="mainbar">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Preset List
+        </div>
+        <div class="panel-body">
+
+            <div class="pull-right">
+                <a type="button" class="btn btn-success" href="/preset/create">
+                    <i class="glyphicon glyphicon-open"></i> New Preset
+                </a>
+                <a type="button" class="btn btn-info" ng-click="vm.tableParams.reload()">
+                    <i class="glyphicon glyphicon-refresh"></i> Refresh
+                </a>
+            </div>
+
+            <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+                <tr ng-repeat="preset in $data">
+                    <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{preset.name}}</td>
+                    <td data-title="'Format'" sortable="'format'" filter="{'format': 'text'}">{{preset.format}}</td>
+                    <td data-title="'videoCodec'" sortable="'videoCodec'" filter="{'videoCodec': 'text'}">{{preset.videoCodec}}</td>
+                    <td data-title="'audioCodec'" sortable="'audioCodec'" filter="{'audioCodec': 'text'}">{{preset.audioCodec}}</td>
+                    <td data-title="'Size'" sortable="'videoHeight'" filter="{'videoHeight': 'text'}">{{preset.videoWidth}}x{{preset.videoHeight}}</td>
+
+                    <td>
+                        <div class="table-actions">
+                            <a class="btn btn-default" title="View" href="/preset/{{preset.id}}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                            <a class="btn btn-default" title="Edit" href="/preset/{{preset.id}}/edit">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(preset)" item="preset">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</section>

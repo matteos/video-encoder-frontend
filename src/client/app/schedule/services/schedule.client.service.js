@@ -19,7 +19,7 @@
             },
             list: {
                 method: 'GET',
-                url: API_BASE_URL + '/schedule'
+                url: API_BASE_URL + '/schedule?limit=50'
             },
             schedule: {
                 method: 'GET',
